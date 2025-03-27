@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área do Professor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .sidebar {
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background-color: #3498db;
+            color: white;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 sidebar p-4">
+                <div class="text-center mb-4">
+                    <img src="/api/placeholder/150/150" class="rounded-circle mb-3" alt="Foto do Professor">
+                    <h4>Maria Santos</h4>
+                    <p>Código: PROF001</p>
+                </div>
+                <nav class="nav flex-column">
+                    <a class="nav-link text-white" href="#turmas">
+                        <i class="bi bi-people me-2"></i>Minhas Turmas
+                    </a>
+                    <a class="nav-link text-white" href="#lancamento-notas">
+                        <i class="bi bi-journal-plus me-2"></i>Lançamento de Notas
+                    </a>
+                    <a class="nav-link text-white" href="#frequencia">
+                        <i class="bi bi-check-square me-2"></i>Frequência
+                    </a>
+                    <a class="nav-link text-white" href="#material-didatico">
+                        <i class="bi bi-folder2-open me-2"></i>Material Didático
+                    </a>
+                    <a class="nav-link text-white" href="telainicial.html">
+                        <i class="bi bi-box-arrow-left me-2"></i>Sair
+                    </a>
+                </nav>
+            </div>
+            <div class="col-md-9 main-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">Lançamento de Notas</div>
+                            <div class="card-body">
+                                <form>
+                                    <div class="mb-3">
+                                        <label class="form-label">Selecione a Turma</label>
+                                        <select class="form-select">
+                                            <option>Matemática - 2º Ano A</option>
+                                            <option>Matemática - 3º Ano B</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Alunos</label>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nome</th>
+                                                    <th>1° Bimestre</th>
+                                                    <th>2° Bimestre</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>João Silva</td>
+                                                    <td><input type="number" class="form-control" min="0" max="10"></td>
+                                                    <td><input type="number" class="form-control" min="0" max="10"></td>
+                                                </tr>
+                                                <!-- More rows -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Salvar Notas</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

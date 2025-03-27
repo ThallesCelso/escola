@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Turmas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .sidebar {
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background-color: #2c3e50;
+            color: white;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 sidebar p-4">
+                <h3 class="mb-4">
+                    <i class="bi bi-people me-2"></i>Gerenciar Turmas
+                </h3>
+                <nav class="nav flex-column">
+                    <a class="nav-link text-white active" href="#criar-turma">
+                        <i class="bi bi-plus-square me-2"></i>Criar Nova Turma
+                    </a>
+                    <a class="nav-link text-white" href="#listar-turmas">
+                        <i class="bi bi-list-ul me-2"></i>Listar Turmas
+                    </a>
+                    <a class="nav-link text-white" href="#alocar-alunos">
+                        <i class="bi bi-person-add me-2"></i>Alocar Alunos
+                    </a>
+                    <a class="nav-link text-white" href="adm.html">
+                        <i class="bi bi-arrow-left me-2"></i>Voltar ao Painel
+                    </a>
+                </nav>
+            </div>
+            <div class="col-md-9 main-content">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h4>Criar Nova Turma</h4>
+                    </div>
+                    <div class="card-body">
+                        <form id="criarTurmaForm">
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Nome da Turma</label>
+                                    <input type="text" class="form-control" id="nome-turma" required 
+                                           placeholder="Ex: 1º Ano A, 2º Ano B">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Ano Letivo</label>
+                                    <select class="form-select" id="ano-letivo" required>
+                                        <option value="">Selecione</option>
+                                        <option value="2023">2023</option>
+                                        <option value="2024">2024</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Turno</label>
+                                    <select class="form-select" id="turno" required>
+                                        <option value="">Selecione</option>
+                                        <option value="manha">Manhã</option>
+                                        <option value="tarde">Tarde</option>
+                                        <option value="noite">Noite</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Professor Responsável</label>
+                                    <select class="form-select" id="professor-responsavel">
+                                        <option value="">Selecione o Professor</option>
+                                        <option value="prof1">Maria Santos (Matemática)</option>
+                                        <option value="prof2">João Silva (Português)</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Capacidade Máxima</label>
+                                    <input type="number" class="form-control" id="capacidade" 
+                                           min="10" max="40" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="bi bi-save me-2"></i>Criar Turma
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Turmas Cadastradas</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Turma</th>
+                                        <th>Ano</th>
+                                        <th>Turno</th>
+                                        <th>Professor</th>
+                                        <th>Alunos</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="turmas-lista">
+                                    <tr>
+                                        <td>1º Ano A</td>
+                                        <td>2024</td>
+                                        <td>Manhã</td>
+                                        <td>Maria Santos</td>
+                                        <td>25/35</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info me-2" data-bs-toggle="modal" data-bs-target="#alocacaoModal">
+                                                <i class="bi bi-person-add"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-danger">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Alocação de Alunos -->
+    <div class="modal fade" id="alocacaoModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Alocar Alunos - 1º Ano A</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Alunos Disponíveis</h6>
+                            <div class="list-group" id="alunos-disponiveis">
+                                <label class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="">
+                                    João Silva
+                                </label>
+                                <label class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="">
+                                    Maria Souza
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Alunos na Turma</h6>
+                            <div class="list-group" id="alunos-turma">
+                                <label class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="">
+                                    Pedro Santos
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Salvar Alterações</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('criarTurmaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nomeTurma = document.getElementById('nome-turma').value;
+            const anoLetivo = document.getElementById('ano-letivo').value;
+            const turno = document.getElementById('turno').value;
+            const professorResponsavel = document.getElementById('professor-responsavel').options[document.getElementById('professor-responsavel').selectedIndex].text;
+            const capacidade = document.getElementById('capacidade').value;
+
+            const tabelaTurmas = document.getElementById('turmas-lista');
+            const novaTurma = document.createElement('tr');
+            novaTurma.innerHTML = `
+                <td>${nomeTurma}</td>
+                <td>${anoLetivo}</td>
+                <td>${turno}</td>
+                <td>${professorResponsavel}</td>
+                <td>0/${capacidade}</td>
+                <td>
+                    <button class="btn btn-sm btn-info me-2" data-bs-toggle="modal" data-bs-target="#alocacaoModal">
+                        <i class="bi bi-person-add"></i>
+                    </button>
+                    <button class="btn btn-sm btn-danger">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </td>
+            `;
+            tabelaTurmas.appendChild(novaTurma);
+
+            // Reset form
+            this.reset();
+        });
+    </script>
+</body>
+</html>
